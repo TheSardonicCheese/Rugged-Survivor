@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.4465782, g: 0.49641252, b: 0.5748167, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -400,6 +400,8 @@ GameObject:
   - component: {fileID: 1777951783}
   - component: {fileID: 1777951782}
   - component: {fileID: 1777951781}
+  - component: {fileID: 1777951788}
+  - component: {fileID: 1777951787}
   m_Layer: 0
   m_Name: Animal
   m_TagString: Untagged
@@ -432,7 +434,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1777951780}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 484a3ed622551fc43a1cac22975bc702, type: 3}
   m_Name: 
@@ -513,6 +515,39 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &1777951787
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1777951780}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1777951788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1777951780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c903ee7af585c12438412126deef2a11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isChasing: 0
+  isFleeing: 0
+  isPatroling: 1
+  isAgressive: 0
+  speed: 6
+  wayPoint: {x: 0, y: 0, z: 0}
+  player: {fileID: 0}
+  Range: 10
 --- !u!1 &1909980793
 GameObject:
   m_ObjectHideFlags: 0
@@ -548,6 +583,7 @@ MonoBehaviour:
   itemName: Item
   healthImpact: 10
   saturation: 10
+  hydration: 0
 --- !u!135 &1909980795
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -751,9 +787,9 @@ MonoBehaviour:
   hunger: 1
   maxThirst: 1
   thirst: 1
-  muscles: 0
+  muscles: 2
   wakefulness: 0
-  speed: 0
+  speed: 1
 --- !u!114 &2021472451
 MonoBehaviour:
   m_ObjectHideFlags: 0
