@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.AI;
 using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
@@ -24,6 +25,7 @@ public class PlayerStats : MonoBehaviour
     void Start()
     {
         speed = 1 + hunger + thirst * muscles;
+        GetComponent<NavMeshAgent>().speed = speed;
     }
 
     // Update is called once per frame
@@ -32,5 +34,6 @@ public class PlayerStats : MonoBehaviour
         if (health > maxHealth) health = maxHealth;
         if (hunger > maxHunger) hunger = maxHunger;
         if (thirst > maxThirst) thirst = maxThirst;
+        GetComponent<NavMeshAgent>().speed = speed;
     }
 }
