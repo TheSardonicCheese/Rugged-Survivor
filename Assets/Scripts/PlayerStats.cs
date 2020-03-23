@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.AI;
 using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
@@ -24,7 +23,7 @@ public class PlayerStats : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GetComponent<NavMeshAgent>().speed = 1 + hunger + thirst * muscles;
+        speed = 1 + hunger + thirst * muscles;
     }
 
     // Update is called once per frame
