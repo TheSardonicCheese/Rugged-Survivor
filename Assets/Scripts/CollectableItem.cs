@@ -25,10 +25,11 @@ public class CollectableItem : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            print("You used a " + itemName);
-            other.GetComponent<PlayerStats>().health += healthImpact;
+            print("You got a an apple.");
+            other.GetComponent<PlayerStats>().apples += 1;
+            /*other.GetComponent<PlayerStats>().health += healthImpact;
             other.GetComponent<PlayerStats>().hunger += saturation;
-            other.GetComponent<PlayerStats>().thirst += hydration;
+            other.GetComponent<PlayerStats>().thirst += hydration;*/
             Destroy(gameObject);
         }
     }

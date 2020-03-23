@@ -13,6 +13,11 @@ public class PlayerStats : MonoBehaviour
     public int muscles;
     public int wakefulness;
     public int speed;
+
+    //inventory
+    public int apples;
+    public int meat;
+    public int wood;
     
     
     // Start is called before the first frame update
