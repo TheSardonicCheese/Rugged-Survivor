@@ -380,7 +380,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.37464216, y: -0, z: -0, w: 0.92716944}
-  m_LocalPosition: {x: 0, y: 8.86, z: -10}
+  m_LocalPosition: {x: 0, y: 29.27, z: -31.13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -437,9 +437,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 484a3ed622551fc43a1cac22975bc702, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  directionChangeInterval: 1
-  maxHeadingChange: 30
+  Speed: 6
+  wayPoint: {x: 0, y: 0, z: 0}
+  Range: 10
 --- !u!65 &1777951783
 BoxCollider:
   m_ObjectHideFlags: 0

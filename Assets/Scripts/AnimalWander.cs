@@ -4,53 +4,40 @@ using UnityEngine;
 
 public class AnimalWander : MonoBehaviour
 {
-    public float speed = 5;
-    public float directionChangeInterval = 1;
-    public float maxHeadingChange = 30;
+    public int Speed = 6;
+    public Vector3 wayPoint;
+    public int Range = 10;
 
-    CharacterController controller;
-    float heading;
-    Vector3 targetRotation;
-
-    void Awake()
+    void Start()
     {
-        controller = GetComponent<CharacterController>();
-
-        // Set random initial rotation
-        heading = Random.Range(0, 360);
-        transform.eulerAngles = new Vector3(0, heading, 0);
-
-        StartCoroutine(NewHeading());
+        //initialise the target way point
+        Wander();
     }
 
     void Update()
     {
-        transform.eulerAngles = Vector3.Slerp(transform.eulerAngles, targetRotation, Time.deltaTime * directionChangeInterval);
-        var forward = transform.TransformDirection(Vector3.forward);
-        controller.SimpleMove(forward * speed);
-    }
-
-    /// <summary>
-    /// Repeatedly calculates a new direction to move towards.
-    /// Use this instead of MonoBehaviour.InvokeRepeating so that the interval can be changed at runtime.
-    /// </summary>
-    IEnumerator NewHeading()
-    {
-        while (true)
+        // this is called every frame
+        // do move code here
+        transform.position += transform.TransformDirection(Vector3.forward) * Speed * Time.deltaTime;
+        if ((transform.position - wayPoint).magnitude < 3)
         {
-            NewHeadingRoutine();
-            yield return new WaitForSeconds(directionChangeInterval);
+            // when the distance between us and the target is less than 3
+            // create a new way point target
+            Wander();
+
+
         }
     }
 
-    /// <summary>
-    /// Calculates a new direction to move towards.
-    /// </summary>
-    void NewHeadingRoutine()
+    void Wander()
     {
-        var floor = Mathf.Clamp(heading - maxHeadingChange, 0, 360);
-        var ceil = Mathf.Clamp(heading + maxHeadingChange, 0, 360);
-        heading = Random.Range(floor, ceil);
-        targetRotation = new Vector3(0, heading, 0);
+        // does nothing except pick a new destination to go to
+
+        wayPoint = new Vector3 (Random.Range(transform.position.x - Range, transform.position.x + Range),
+            1, Random.Range(transform.position.z - Range, transform.position.z + Range));
+        wayPoint.y = 1;
+        // don't need to change direction every frame seeing as you walk in a straight line only
+        transform.LookAt(wayPoint);
+        Debug.Log(wayPoint + " and " + (transform.position - wayPoint).magnitude);
     }
 }
