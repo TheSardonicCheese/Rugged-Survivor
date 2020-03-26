@@ -8,6 +8,9 @@ public class PlayerController : MonoBehaviour
     public LayerMask clickable;
     private NavMeshAgent myAgent;
     public Transform selectedTarget;
+    public GameObject target;
+    bool gotTarget = false; //This is so we can deselect if we didn't click anything
+
 
     void Start()
     {
@@ -24,6 +27,7 @@ public class PlayerController : MonoBehaviour
             if(Physics.Raycast (myRay, out hitInfo, 100, clickable))
             {
                 myAgent.SetDestination(hitInfo.point);
+                DeselectTarget(); //Deselect the old target
             }
         }
         if (Input.GetMouseButtonDown(1))
@@ -31,28 +35,37 @@ public class PlayerController : MonoBehaviour
             //Shoot ray from mouse position
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit[] hits = Physics.RaycastAll(ray);
-            bool gotTarget = false; //This is so we can deselect if we didn't click anything
+
             foreach (RaycastHit hit in hits)
             { //Loop through all the hits
-                if (hit.transform.gameObject.layer == 8)
+                if (hit.transform.gameObject == GameObject.FindGameObjectWithTag("Animal"))
                 { //Make a new layer for targets
                   //You hit a target!
                     DeselectTarget(); //Deselect the old target
                     selectedTarget = hit.transform;
+                    target = hit.transform.gameObject;
                     SelectTarget(); //Select the new target
                     gotTarget = true; //Set that we hit something
+
                     
                     break; //Break out because we don't need to check anymore
                 }
             }
             if (!gotTarget) DeselectTarget(); //If we missed everything, deselect
-           
+
+            
         }
-        myAgent.SetDestination(selectedTarget.transform.position);
+        if (gotTarget == true)
+        {
+            myAgent.SetDestination(target.transform.position);
+        }
     }
     void DeselectTarget()
     {
         selectedTarget = null;
+        gotTarget = false;
+        target = null;
+        Debug.Log("Target Deselected");
     }
     void SelectTarget()
     {
