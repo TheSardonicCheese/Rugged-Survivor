@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     private NavMeshAgent myAgent;
     public Transform selectedTarget;
     public GameObject target;
-    bool gotTarget = false; //This is so we can deselect if we didn't click anything
+    public bool gotTarget = false; //This is so we can deselect if we didn't click anything
 
 
     void Start()

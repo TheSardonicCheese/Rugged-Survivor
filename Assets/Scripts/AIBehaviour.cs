@@ -12,12 +12,17 @@ public class AIBehaviour : MonoBehaviour
     public Vector3 wayPoint;
     public GameObject player;
     public int Range = 10;
+    public GameObject body;
+
+
 
     // Start is called before the first frame update
     void Start()
     {
         Wander();
         player = GameObject.FindGameObjectWithTag("Player");
+
+        
     }
 
     // Update is called once per frame
@@ -25,14 +30,12 @@ public class AIBehaviour : MonoBehaviour
     {
         if (isPatroling == true)
         {
-            transform.position += transform.TransformDirection(Vector3.forward) * speed * Time.deltaTime;
+            body.transform.position += transform.TransformDirection(Vector3.forward) * speed * Time.deltaTime;
             if ((transform.position - wayPoint).magnitude < 3)
             {
                 // when the distance between us and the target is less than 3
                 // create a new way point target
                 Wander();
-
-
             }
         }
         if (isChasing == true)
@@ -40,7 +43,7 @@ public class AIBehaviour : MonoBehaviour
             //set player as destination
             //move toward destination
             float step = speed * Time.deltaTime; // calculate distance to move
-            transform.position = Vector3.MoveTowards(transform.position, player.transform.position, step);
+            body.transform.position = Vector3.MoveTowards(transform.position, player.transform.position, step);
             
         }
         if (isFleeing == true)
@@ -48,7 +51,7 @@ public class AIBehaviour : MonoBehaviour
             //set player as desintation
             //move away from destination
             float step = speed * Time.deltaTime; // calculate distance to move
-            transform.position = Vector3.MoveTowards(transform.position, new Vector3 (player.transform.position.x, 1, player.transform.position.z), -step);
+            body.transform.position = Vector3.MoveTowards(transform.position, new Vector3 (player.transform.position.x, 1, player.transform.position.z), -step);
         }
         
 
@@ -86,7 +89,7 @@ public class AIBehaviour : MonoBehaviour
             1, Random.Range(transform.position.z - Range, transform.position.z + Range));
         wayPoint.y = 1;
         // don't need to change direction every frame seeing as you walk in a straight line only
-        transform.LookAt(wayPoint);
+        body.transform.LookAt(wayPoint);
         //Debug.Log(wayPoint + " and " + (transform.position - wayPoint).magnitude);
     }
 }

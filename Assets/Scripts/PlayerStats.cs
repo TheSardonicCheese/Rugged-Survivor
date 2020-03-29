@@ -26,6 +26,7 @@ public class PlayerStats : MonoBehaviour
     {
         speed = 1 + hunger + thirst * muscles;
         GetComponent<NavMeshAgent>().speed = speed;
+        
     }
 
     // Update is called once per frame
@@ -35,5 +36,23 @@ public class PlayerStats : MonoBehaviour
         if (hunger > maxHunger) hunger = maxHunger;
         if (thirst > maxThirst) thirst = maxThirst;
         GetComponent<NavMeshAgent>().speed = speed;
+    }
+    void OnTriggerEnter(Collider col)
+    {
+        Debug.Log("Fighting animal");
+
+        if (col.gameObject.tag == "Animal" && col.gameObject.GetComponent<AnimalStats>().str <= muscles)
+        {
+            Destroy(col.gameObject);
+            Debug.Log("won the rastle");
+        }
+        if(col.gameObject.tag == "Animal" && col.gameObject.GetComponent<AnimalStats>().str >= muscles)
+        {
+            Debug.Log("Lost the rastle");
+            transform.position = GameObject.FindGameObjectWithTag("StartPos").transform.position;
+            GetComponent<PlayerController>().target = null;
+            GetComponent<PlayerController>().gotTarget = false;
+            GetComponent<PlayerController>().selectedTarget = GameObject.FindGameObjectWithTag("StartPos").transform;
+        }
     }
 }
