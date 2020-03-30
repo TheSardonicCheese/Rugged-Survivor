@@ -209,4 +209,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   str: 0
   animalID: 1
+  body: {fileID: 202725818819773451}
+  squirrel: {fileID: 2100000, guid: 8cd4c4b0e7da3884eac33fd6ece8aae3, type: 2}
+  wolf: {fileID: 2100000, guid: a90eda3147361b54c9c5bedca65cc231, type: 2}
+  bear: {fileID: 2100000, guid: 75fdf909b0db6d145baf97b0d3e57b37, type: 2}
   myType: 2
