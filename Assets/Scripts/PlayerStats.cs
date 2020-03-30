@@ -44,6 +44,9 @@ public class PlayerStats : MonoBehaviour
         if (col.gameObject.tag == "Animal" && col.gameObject.GetComponent<AnimalStats>().str <= muscles)
         {
             Destroy(col.gameObject);
+            GetComponent<PlayerController>().selectedTarget = null;
+            GetComponent<PlayerController>().gotTarget = false;
+            GetComponent<PlayerController>().target = null;
             Debug.Log("won the rastle");
         }
         if(col.gameObject.tag == "Animal" && col.gameObject.GetComponent<AnimalStats>().str >= muscles)
