@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
 
             foreach (RaycastHit hit in hits)
             { //Loop through all the hits
-                if (hit.transform.gameObject == GameObject.FindGameObjectWithTag("Animal"))
+                if (hit.transform.gameObject.tag == "Animal")
                 { //Make a new layer for targets
                   //You hit a target!
                     DeselectTarget(); //Deselect the old target
