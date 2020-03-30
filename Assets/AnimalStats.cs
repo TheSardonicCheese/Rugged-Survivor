@@ -26,18 +26,21 @@ public class AnimalStats : MonoBehaviour
                 body.GetComponent<Renderer>().material = squirrel;
                 scaleChange = new Vector3(-.5f, -.5f, -.5f);
                 body.transform.localScale += scaleChange;
+                GetComponentInChildren<AIBehaviour>().isAgressive = false;
                 break;
             case AnimalTypes.wolf:
                 str = 2;
                 body.GetComponent<Renderer>().material = wolf;
                 scaleChange = new Vector3(1f, 1f,1f);
                 body.transform.localScale += scaleChange;
+                GetComponentInChildren<AIBehaviour>().isAgressive = true;
                 break;
             case AnimalTypes.bear:
                 str = 3;
                 body.GetComponent<Renderer>().material = bear;
                 scaleChange = new Vector3(2f, 2f, 2f);
                 body.transform.localScale += scaleChange;
+                GetComponentInChildren<AIBehaviour>().isAgressive = false;
                 break;
         }
     }
