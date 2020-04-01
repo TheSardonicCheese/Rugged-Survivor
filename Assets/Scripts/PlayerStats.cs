@@ -20,8 +20,10 @@ public class PlayerStats : MonoBehaviour
 
     //inventory
     public int apples;
+    public int steak;
     public int meat;
     public int wood;
+
     public int waitingTime = 3;
     private IEnumerator chopTimer;
     public GameObject tree;
