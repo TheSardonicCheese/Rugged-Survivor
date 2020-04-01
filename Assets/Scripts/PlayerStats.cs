@@ -16,13 +16,17 @@ public class PlayerStats : MonoBehaviour
     public int muscleCharge;
     public int wakefulness;
     public int speed;
+    public bool atTree;
 
     //inventory
     public int apples;
     public int meat;
     public int wood;
-    
-    
+    public int waitingTime = 3;
+    private IEnumerator chopTimer;
+    public GameObject tree;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +42,12 @@ public class PlayerStats : MonoBehaviour
         if (hunger > maxHunger) hunger = maxHunger;
         if (thirst > maxThirst) thirst = maxThirst;
         GetComponent<NavMeshAgent>().speed = speed;
+        if(atTree = true && Input.GetKeyDown(KeyCode.Space))
+        {
+            wood += muscles;
+            tree.GetComponent<Tree>().health -= muscles;
+            Debug.Log("chopping wood");
+        }
     }
     void OnTriggerEnter(Collider col)
     {
@@ -59,5 +69,15 @@ public class PlayerStats : MonoBehaviour
             GetComponent<PlayerController>().gotTarget = false;
             GetComponent<PlayerController>().selectedTarget = GameObject.FindGameObjectWithTag("StartPos").transform;
         }
+        if (col.gameObject.tag == "Tree")
+        {
+            Debug.Log("at tree");
+            atTree = true;
+            tree = col.gameObject;
+            //StartCoroutine(ChopTimer(3f,col));
+        }
     }
+
+    
+
 }

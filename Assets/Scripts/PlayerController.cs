@@ -50,6 +50,15 @@ public class PlayerController : MonoBehaviour
                     
                     break; //Break out because we don't need to check anymore
                 }
+                if (hit.transform.gameObject.tag == "Tree")
+                {
+                    DeselectTarget(); //Deselect the old target
+                    selectedTarget = hit.transform;
+                    target = hit.transform.gameObject;
+                    SelectTarget(); //Select the new target
+                    gotTarget = true; //Set that we hit something
+                }
+
             }
             if (!gotTarget) DeselectTarget(); //If we missed everything, deselect
 
