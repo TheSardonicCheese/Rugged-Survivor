@@ -12,6 +12,8 @@ public class PlayerStats : MonoBehaviour
     public int maxThirst = 1;
     public int thirst = 1;
     public int muscles;
+    public int muscleChargeMax = 3;
+    public int muscleCharge;
     public int wakefulness;
     public int speed;
 
