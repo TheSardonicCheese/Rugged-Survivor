@@ -29,14 +29,14 @@ public class AnimalStats : MonoBehaviour
                 GetComponentInChildren<AIBehaviour>().isAgressive = false;
                 break;
             case AnimalTypes.wolf:
-                str = 2;
+                str = 40;
                 body.GetComponent<Renderer>().material = wolf;
                 scaleChange = new Vector3(1f, 1f,1f);
                 body.transform.localScale += scaleChange;
                 GetComponentInChildren<AIBehaviour>().isAgressive = true;
                 break;
             case AnimalTypes.bear:
-                str = 3;
+                str = 80;
                 body.GetComponent<Renderer>().material = bear;
                 scaleChange = new Vector3(2f, 2f, 2f);
                 body.transform.localScale += scaleChange;

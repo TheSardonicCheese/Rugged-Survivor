@@ -5,18 +5,24 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    public int maxHealth = 1;
-    public int health = 1;
-    public int maxHunger = 1;
-    public int hunger = 1;
-    public int maxThirst = 1;
-    public int thirst = 1;
-    public int muscles;
+    //create stats
+    public int maxHealth = 100;
+    public int health = 100;
+    public int maxHunger = 100;
+    public int hunger = 100;
+    public int maxThirst = 100;
+    public int thirst = 100;
+    public int maxMuscles = 100;
+    public int muscles = 1;
     public int muscleChargeMax = 3;
     public int muscleCharge;
     public int wakefulness;
     public int speed;
     public bool atTree;
+
+    //create timers
+    public float hungertime = 7;
+    public float thirsttime = 3.5f;
 
     //inventory
     public int apples;
@@ -40,9 +46,30 @@ public class PlayerStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //don't let stats exceed maximum or minimum
         if (health > maxHealth) health = maxHealth;
         if (hunger > maxHunger) hunger = maxHunger;
+        if (hunger < 0) hunger = 0;
         if (thirst > maxThirst) thirst = maxThirst;
+        if (thirst < 0) thirst = 0;
+        if (muscles > maxMuscles) muscles = maxMuscles;
+
+        //run timers
+        hungertime -= Time.deltaTime;
+        if (hungertime < 0)
+        {
+            hunger -= 1;
+            hungertime = 7;
+        }
+
+        thirsttime -= Time.deltaTime;
+        if (thirsttime < 0)
+        {
+            thirst -= 1;
+            thirsttime = 7;
+        }
+
+
         GetComponent<NavMeshAgent>().speed = speed;
         if(atTree = true && Input.GetKeyDown(KeyCode.Space))
         {
