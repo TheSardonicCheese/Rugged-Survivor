@@ -18,7 +18,7 @@ public class CollectableItem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        transform.LookAt(-Camera.main.transform.position);
     }
 
     void OnTriggerEnter(Collider other)
