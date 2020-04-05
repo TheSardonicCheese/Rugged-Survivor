@@ -10,12 +10,17 @@ public class PlayerController : MonoBehaviour
     public Transform selectedTarget;
     public GameObject target;
     public bool gotTarget = false; //This is so we can deselect if we didn't click anything
+    public AudioClip walkSound;
+    private AudioSource source;
+    public float volLowRange;
+    public float volHighRange;
 
 
     void Start()
     {
         myAgent = GetComponent<NavMeshAgent>();
         selectedTarget = GameObject.FindGameObjectWithTag("StartPos").transform;
+        source = GetComponent<AudioSource>();
     }
     void Update()
     {
