@@ -36,6 +36,8 @@ public class PlayerStats : MonoBehaviour
 
     //Audio
     public AudioClip woodChop;
+    public AudioClip treeFallingSound;
+    public AudioClip treeRustling;
     private AudioSource source;
 
 
@@ -80,9 +82,17 @@ public class PlayerStats : MonoBehaviour
         if(atTree = true && Input.GetKeyDown(KeyCode.Space))
         {
             source.PlayOneShot(woodChop, 1f);
-            wood += muscles;
-            tree.GetComponent<Tree>().health -= muscles;
+            wood ++;
+            tree.GetComponent<Tree>().health --;
             Debug.Log("chopping wood");
+            if(tree.GetComponent<Tree>().health == 0)
+            {
+                source.PlayOneShot(treeFallingSound, 1);
+                Debug.Log("Tree fell");
+                atTree = false;
+                tree = null;
+                GetComponent<PlayerController>().DeselectTarget();
+            }
         }
     }
     void OnTriggerEnter(Collider col)
@@ -109,6 +119,7 @@ public class PlayerStats : MonoBehaviour
         {
             Debug.Log("at tree");
             atTree = true;
+            source.PlayOneShot(treeRustling, 1f);
             tree = col.gameObject;
             //StartCoroutine(ChopTimer(3f,col));
         }

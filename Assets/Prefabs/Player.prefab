@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5046628567109953900
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7915302695240123059}
+  m_Layer: 0
+  m_Name: buildSpot
+  m_TagString: buildPos
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7915302695240123059
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5046628567109953900}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.15, z: -2.14}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8743766401280146872}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8743766401280146885
 GameObject:
   m_ObjectHideFlags: 0
@@ -34,7 +64,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.64, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 7915302695240123059}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -131,6 +162,9 @@ MonoBehaviour:
   selectedTarget: {fileID: 0}
   target: {fileID: 0}
   gotTarget: 0
+  walkSound: {fileID: 0}
+  volLowRange: 0
+  volHighRange: 0
 --- !u!114 &8743766401280146875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,16 +177,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c44bedc732acb3c4eb4655246f9129a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 1
-  health: 1
-  maxHunger: 3
-  hunger: 3
-  maxThirst: 3
-  thirst: 3
+  maxHealth: 100
+  health: 100
+  maxHunger: 100
+  hunger: 100
+  maxThirst: 100
+  thirst: 100
   maxMuscles: 100
-  muscles: 3
+  muscles: 1
   muscleChargeMax: 3
-  muscleCharge: 0
+  muscleCharge: 3
   wakefulness: 0
   speed: 1
   atTree: 0
@@ -164,6 +198,9 @@ MonoBehaviour:
   wood: 0
   waitingTime: 3
   tree: {fileID: 0}
+  woodChop: {fileID: 8300000, guid: b1e3ab93385e3c04898ccf974c32ae38, type: 3}
+  treeFallingSound: {fileID: 8300000, guid: 5e02add55eca4ad479869e093534ace7, type: 3}
+  treeRustling: {fileID: 8300000, guid: e00e6d4c02c0b2948ae20296ec1953c3, type: 3}
 --- !u!195 &8743766401280146877
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -196,7 +233,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: b1e3ab93385e3c04898ccf974c32ae38, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
