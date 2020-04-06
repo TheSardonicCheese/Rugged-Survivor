@@ -44,7 +44,7 @@ public class PlayerStats : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        speed = 1 + hunger + thirst * muscles;
+        speed = 1 + (hunger/2) + (thirst/2) * muscles;
         GetComponent<NavMeshAgent>().speed = speed;
         source = GetComponent<AudioSource>();
 
@@ -53,6 +53,11 @@ public class PlayerStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //say dialouge
+        if (health < 20) //say dialouge;
+        if (hunger < 0) //say dialouge;
+        if (thirst < 0) //say dialouge;
+
         //don't let stats exceed maximum or minimum
         if (health > maxHealth) health = maxHealth;
         if (hunger > maxHunger) hunger = maxHunger;
