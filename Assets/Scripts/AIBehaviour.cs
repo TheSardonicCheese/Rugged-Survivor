@@ -14,6 +14,12 @@ public class AIBehaviour : MonoBehaviour
     public int Range = 10;
     public GameObject body;
 
+    public AudioClip narChase;
+    public AudioClip narFlee;
+    private AudioSource source;
+    private int lineCountChase = 0;
+    private int lineCountFlee = 0;
+
 
 
     // Start is called before the first frame update
@@ -21,8 +27,7 @@ public class AIBehaviour : MonoBehaviour
     {
         Wander();
         player = GameObject.FindGameObjectWithTag("Player");
-
-        
+        source = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -46,6 +51,12 @@ public class AIBehaviour : MonoBehaviour
             body.transform.position = Vector3.MoveTowards(transform.position, player.transform.position, step);
             
         }
+        if(isChasing == true && lineCountChase < 1)
+        {
+            source.PlayOneShot(narChase, 1f);
+            lineCountChase++;
+
+        }
         if (isFleeing == true)
         {
             //set player as desintation
@@ -53,7 +64,12 @@ public class AIBehaviour : MonoBehaviour
             float step = speed * Time.deltaTime; // calculate distance to move
             body.transform.position = Vector3.MoveTowards(transform.position, new Vector3 (player.transform.position.x, 1, player.transform.position.z), -step);
         }
-        
+        if(isChasing == true && lineCountFlee < 1)
+        {
+            source.PlayOneShot(narFlee, 1f);
+            lineCountFlee++;
+        }
+
 
     }
     void OnTriggerEnter(Collider other)
