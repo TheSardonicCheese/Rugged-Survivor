@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.4465782, g: 0.49641252, b: 0.5748167, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -426,7 +426,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 493608572}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 493608574}
+        m_MethodName: EatFood
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &493608572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2693,6 +2704,7 @@ GameObject:
   - component: {fileID: 2031994693}
   - component: {fileID: 2031994692}
   - component: {fileID: 2031994691}
+  - component: {fileID: 2031994694}
   m_Layer: 5
   m_Name: SteakButton
   m_TagString: Untagged
@@ -2762,7 +2774,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2031994692}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2031994694}
+        m_MethodName: EatFood
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2031994692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2799,6 +2822,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2031994689}
   m_CullTransparentMesh: 0
+--- !u!114 &2031994694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2031994689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83d65701822d05f40ae168eadd34f4ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myplayer: {fileID: 2021472444}
+  itemName: steak
+  healthImpact: 10
+  saturation: 30
+  hydration: 0
 --- !u!1 &2054039178
 GameObject:
   m_ObjectHideFlags: 0
@@ -3027,6 +3067,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7915302695240123059, guid: 728f718015af0a24e96239a3b105b1da,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7915302695240123059, guid: 728f718015af0a24e96239a3b105b1da,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7915302695240123059, guid: 728f718015af0a24e96239a3b105b1da,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 7915302695240123059, guid: 728f718015af0a24e96239a3b105b1da,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7915302695240123059, guid: 728f718015af0a24e96239a3b105b1da,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8743766401280146872, guid: 728f718015af0a24e96239a3b105b1da,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3090,7 +3155,7 @@ PrefabInstance:
     - target: {fileID: 8743766401280146875, guid: 728f718015af0a24e96239a3b105b1da,
         type: 3}
       propertyPath: muscles
-      value: 80
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8743766401280146875, guid: 728f718015af0a24e96239a3b105b1da,
         type: 3}
@@ -3107,30 +3172,5 @@ PrefabInstance:
       propertyPath: footsteps
       value: 
       objectReference: {fileID: 8300000, guid: bffd05ecbd9b63146b28c272f6990f3d, type: 3}
-    - target: {fileID: 7915302695240123059, guid: 728f718015af0a24e96239a3b105b1da,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 7915302695240123059, guid: 728f718015af0a24e96239a3b105b1da,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 7915302695240123059, guid: 728f718015af0a24e96239a3b105b1da,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 7915302695240123059, guid: 728f718015af0a24e96239a3b105b1da,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7915302695240123059, guid: 728f718015af0a24e96239a3b105b1da,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 728f718015af0a24e96239a3b105b1da, type: 3}
