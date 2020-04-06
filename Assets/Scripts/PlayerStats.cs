@@ -34,13 +34,20 @@ public class PlayerStats : MonoBehaviour
     private IEnumerator chopTimer;
     public GameObject tree;
 
+    //Audio
+    public AudioClip woodChop;
+    public AudioClip treeFallingSound;
+    public AudioClip treeRustling;
+    private AudioSource source;
+
 
     // Start is called before the first frame update
     void Start()
     {
         speed = 1 + hunger + thirst * muscles;
         GetComponent<NavMeshAgent>().speed = speed;
-        
+        source = GetComponent<AudioSource>();
+
     }
 
     // Update is called once per frame
@@ -71,11 +78,21 @@ public class PlayerStats : MonoBehaviour
 
 
         GetComponent<NavMeshAgent>().speed = speed;
+
         if(atTree = true && Input.GetKeyDown(KeyCode.Space))
         {
-            wood += muscles;
-            tree.GetComponent<Tree>().health -= muscles;
+            source.PlayOneShot(woodChop, 1f);
+            wood ++;
+            tree.GetComponent<Tree>().health --;
             Debug.Log("chopping wood");
+            if(tree.GetComponent<Tree>().health == 0)
+            {
+                source.PlayOneShot(treeFallingSound, 1);
+                Debug.Log("Tree fell");
+                atTree = false;
+                tree = null;
+                GetComponent<PlayerController>().DeselectTarget();
+            }
         }
     }
     void OnTriggerEnter(Collider col)
@@ -102,11 +119,21 @@ public class PlayerStats : MonoBehaviour
         {
             Debug.Log("at tree");
             atTree = true;
+            source.PlayOneShot(treeRustling, 1f);
             tree = col.gameObject;
             //StartCoroutine(ChopTimer(3f,col));
         }
     }
+    void OnTriggerExit(Collider col)
+    {
+        if(col.gameObject.tag == "Tree")
+        {
+            atTree = false;
+            tree = null;
+            Debug.Log("left tree");
+        }
+    }
 
-    
+
 
 }

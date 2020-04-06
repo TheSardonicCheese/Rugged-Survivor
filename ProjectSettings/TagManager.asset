@@ -7,6 +7,7 @@ TagManager:
   - StartPos
   - Animal
   - Tree
+  - buildPos
   layers:
   - Default
   - TransparentFX

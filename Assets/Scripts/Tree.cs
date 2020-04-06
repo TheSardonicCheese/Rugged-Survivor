@@ -5,6 +5,8 @@ using UnityEngine;
 public class Tree : MonoBehaviour
 {
     public int health;// Start is called before the first frame update
+
+
     void Start()
     {
         health = Random.Range(2, 6);

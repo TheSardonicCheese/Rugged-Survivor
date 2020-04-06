@@ -10,16 +10,28 @@ public class PlayerController : MonoBehaviour
     public Transform selectedTarget;
     public GameObject target;
     public bool gotTarget = false; //This is so we can deselect if we didn't click anything
+    private AudioSource source;
+    public float volLowRange;
+    public float volHighRange;
+    public bool atTarget = false;
+    public AudioClip footsteps;
 
 
     void Start()
     {
         myAgent = GetComponent<NavMeshAgent>();
         selectedTarget = GameObject.FindGameObjectWithTag("StartPos").transform;
+        source = GetComponent<AudioSource>();
     }
     void Update()
     {
-        if( Input.GetMouseButtonDown(0))
+        if(myAgent.velocity.magnitude == 0)
+        {
+            source.Stop();
+            source.loop = false;
+        }
+        
+        if (Input.GetMouseButton(0) && !UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
         {
             Ray myRay = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hitInfo;
@@ -28,9 +40,14 @@ public class PlayerController : MonoBehaviour
             {
                 myAgent.SetDestination(hitInfo.point);
                 DeselectTarget(); //Deselect the old target
+                source.Stop();
+                source.loop = true;
+                source.clip = footsteps;
+                source.volume = 1f;
+                source.Play();
             }
         }
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButton(1) && !UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
         {
             //Shoot ray from mouse position
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -67,9 +84,18 @@ public class PlayerController : MonoBehaviour
         if (gotTarget == true)
         {
             myAgent.SetDestination(target.transform.position);
+            source.Stop();
+            source.loop = true;
+            source.clip = footsteps;
+            source.volume = 1f;
+            source.Play();
+            if (myAgent.remainingDistance < 3)
+            {
+                myAgent.velocity = new Vector3(0, 0, 0);
+            }
         }
     }
-    void DeselectTarget()
+    public void DeselectTarget()
     {
         selectedTarget = null;
         gotTarget = false;
