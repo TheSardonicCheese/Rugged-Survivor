@@ -40,6 +40,11 @@ public class PlayerStats : MonoBehaviour
     public AudioClip treeRustling;
     private AudioSource source;
 
+    //dialouge
+    public AudioClip lowHealth;
+    public AudioClip starvation;
+    public AudioClip Dehydration;
+
 
     // Start is called before the first frame update
     void Start()
