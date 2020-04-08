@@ -3370,6 +3370,21 @@ PrefabInstance:
       propertyPath: wood
       value: 14
       objectReference: {fileID: 0}
+    - target: {fileID: 8743766401280146875, guid: 728f718015af0a24e96239a3b105b1da,
+        type: 3}
+      propertyPath: starvation
+      value: 
+      objectReference: {fileID: 8300000, guid: dff852ea0e1c53542a4d6a3e59c09b9f, type: 3}
+    - target: {fileID: 8743766401280146875, guid: 728f718015af0a24e96239a3b105b1da,
+        type: 3}
+      propertyPath: Dehydration
+      value: 
+      objectReference: {fileID: 8300000, guid: 09a17330099289f47b2af7c591175874, type: 3}
+    - target: {fileID: 8743766401280146875, guid: 728f718015af0a24e96239a3b105b1da,
+        type: 3}
+      propertyPath: lowHealth
+      value: 
+      objectReference: {fileID: 8300000, guid: ed9f087ec4821be4389f713094214753, type: 3}
     - target: {fileID: 2748682737174634079, guid: 728f718015af0a24e96239a3b105b1da,
         type: 3}
       propertyPath: m_audioClip

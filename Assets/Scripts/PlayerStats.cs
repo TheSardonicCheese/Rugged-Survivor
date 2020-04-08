@@ -45,6 +45,9 @@ public class PlayerStats : MonoBehaviour
     public AudioClip starvation;
     public AudioClip Dehydration;
 
+    //checks
+    bool starvationPlayed = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -59,9 +62,14 @@ public class PlayerStats : MonoBehaviour
     void Update()
     {
         //say dialouge
-        if (health < 20) //say dialouge;
-        if (hunger < 0) //say dialouge;
-        if (thirst < 0) //say dialouge;
+        //if (health < 20) //say dialouge;
+        if ((hunger <= 0) && starvationPlayed == false)
+            {
+                print("playing starvation line");
+                playSound(starvation, 20);
+                starvationPlayed = true;
+            }
+        //if (thirst < 0) //say dialouge;
 
         //don't let stats exceed maximum or minimum
         if (health > maxHealth) health = maxHealth;
@@ -142,6 +150,11 @@ public class PlayerStats : MonoBehaviour
             tree = null;
             Debug.Log("left tree");
         }
+    }
+
+    void playSound(AudioClip mysound, float vol)
+    {
+        source.PlayOneShot(mysound, vol);
     }
 
 
