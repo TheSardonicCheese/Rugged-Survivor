@@ -66,7 +66,7 @@ public class PlayerStats : MonoBehaviour
         if ((hunger <= 0) && starvationPlayed == false)
             {
                 print("playing starvation line");
-                playSound(starvation, 20);
+                playSound(starvation, 50);
                 starvationPlayed = true;
             }
         //if (thirst < 0) //say dialouge;
