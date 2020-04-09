@@ -9,6 +9,12 @@ public class AnimalStats : MonoBehaviour
     public GameObject body;
     public Material squirrel, wolf, bear;
     public Vector3 scaleChange;
+    public AudioClip squirrelSound;
+    public AudioClip wolfSound;
+    public AudioClip bearSound;
+    AudioClip mysound;
+    public AudioSource mysource;
+    //determine animal type
     public enum AnimalTypes
     {
         squirrel,
@@ -27,6 +33,7 @@ public class AnimalStats : MonoBehaviour
                 scaleChange = new Vector3(-.5f, -.5f, -.5f);
                 body.transform.localScale += scaleChange;
                 GetComponentInChildren<AIBehaviour>().isAgressive = false;
+                mysound = squirrelSound;
                 break;
             case AnimalTypes.wolf:
                 str = 40;
@@ -34,6 +41,7 @@ public class AnimalStats : MonoBehaviour
                 scaleChange = new Vector3(1f, 1f,1f);
                 body.transform.localScale += scaleChange;
                 GetComponentInChildren<AIBehaviour>().isAgressive = true;
+                mysound = wolfSound;
                 break;
             case AnimalTypes.bear:
                 str = 80;
@@ -41,7 +49,15 @@ public class AnimalStats : MonoBehaviour
                 scaleChange = new Vector3(2f, 2f, 2f);
                 body.transform.localScale += scaleChange;
                 GetComponentInChildren<AIBehaviour>().isAgressive = false;
+                mysound = bearSound;
                 break;
+        }
+    }
+    void OnTriggerEnter(Collider col)
+    {
+        if (col.gameObject.tag == "Player")
+        {
+            mysource.PlayOneShot(mysound, 1);
         }
     }
 
