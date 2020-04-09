@@ -162,9 +162,10 @@ MonoBehaviour:
   selectedTarget: {fileID: 0}
   target: {fileID: 0}
   gotTarget: 0
-  walkSound: {fileID: 0}
   volLowRange: 0
   volHighRange: 0
+  atTarget: 0
+  footsteps: {fileID: 0}
 --- !u!114 &8743766401280146875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,6 +202,14 @@ MonoBehaviour:
   woodChop: {fileID: 8300000, guid: b1e3ab93385e3c04898ccf974c32ae38, type: 3}
   treeFallingSound: {fileID: 8300000, guid: 5e02add55eca4ad479869e093534ace7, type: 3}
   treeRustling: {fileID: 8300000, guid: e00e6d4c02c0b2948ae20296ec1953c3, type: 3}
+  lowHealth: {fileID: 0}
+  starvation: {fileID: 0}
+  dehydration: {fileID: 0}
+  ohWow: {fileID: 8300000, guid: 6c4ef889cabf16b4a9c78d8674312f80, type: 3}
+  protein: {fileID: 8300000, guid: 5416a04a31e545349abc6c767a43f415, type: 3}
+  recover: {fileID: 8300000, guid: 196b37f8fb42b824096f863050f8598f, type: 3}
+  unstoppable: {fileID: 8300000, guid: 31506e0da471f984292234bff88efee8, type: 3}
+  speaker: {fileID: 0}
 --- !u!195 &8743766401280146877
 NavMeshAgent:
   m_ObjectHideFlags: 0

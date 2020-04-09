@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 625338213}
   - component: {fileID: 625338214}
   - component: {fileID: 625338215}
+  - component: {fileID: 7068112202400609437}
   m_Layer: 8
   m_Name: Animal AI
   m_TagString: Untagged
@@ -53,8 +54,9 @@ MonoBehaviour:
   player: {fileID: 0}
   Range: 10
   body: {fileID: 202725818819773451}
-  narChase: {fileID: 0}
-  narFlee: {fileID: 0}
+  narChase: {fileID: 8300000, guid: 0a3dab5028b3ca345a39e88a4576b85d, type: 3}
+  narFlee: {fileID: 8300000, guid: 8f9c9525991feed47aa70fdb080fb9bb, type: 3}
+  Narrator: {fileID: 7068112202400609437}
 --- !u!135 &625338215
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -68,6 +70,102 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 7
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!82 &7068112202400609437
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 625338212}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &202725818819773451
 GameObject:
   m_ObjectHideFlags: 0
@@ -211,6 +309,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   str: 0
+  meat: 0
   animalID: 1
   body: {fileID: 202725818819773451}
   squirrel: {fileID: 2100000, guid: 8cd4c4b0e7da3884eac33fd6ece8aae3, type: 2}

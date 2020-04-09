@@ -17,8 +17,8 @@ public class PlayerStats : MonoBehaviour
     public int muscleChargeMax = 3;
     public int muscleCharge;
     public int wakefulness;
-    public int speed;
-    public bool atTree;
+    public float speed;
+    public bool atTree = false;
 
     //create timers
     public float hungertime = 7;
@@ -38,26 +38,39 @@ public class PlayerStats : MonoBehaviour
     public AudioClip woodChop;
     public AudioClip treeFallingSound;
     public AudioClip treeRustling;
-    private AudioSource source;
 
     //dialouge
     public AudioClip lowHealth;
     public AudioClip starvation;
     public AudioClip dehydration;
+    public AudioClip ohWow;
+    public AudioClip protein;
+    public AudioClip recover;
+    public AudioClip unstoppable;
+
 
     public AudioSource speaker;
+    public AudioSource Narrator;
+    public AudioSource source;
+
+
 
     //checks
     bool starvationPlayed = false;
     bool lowhealthPlayed = false;
     bool dehydrationPlayed = false;
+    bool ohWowPlayed = false;
+    bool unstoppablePlayed = false;
+    bool hungerPlayed = false;
+    bool recoverPlayed = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        speed = 1 + (hunger/2) + (thirst/2) * muscles;
-        GetComponent<NavMeshAgent>().speed = speed;
-        source = GetComponent<AudioSource>();
+        //speed = 1 + (hunger/2) + (thirst/2) * muscles;
+        //GetComponent<NavMeshAgent>().speed = speed;
+        speed = GetComponent<NavMeshAgent>().speed;
+        //source = GetComponent<AudioSource>();
 
     }
 
@@ -83,6 +96,26 @@ public class PlayerStats : MonoBehaviour
                 playSound(dehydration, 1);
                 dehydrationPlayed = true;
             }
+        if (maxMuscles > 50 && ohWowPlayed == false)
+        {
+            Narrator.PlayOneShot(ohWow, 1);
+            ohWowPlayed = true;
+        }
+        if(maxMuscles > 80 && unstoppablePlayed == false)
+        {
+            Narrator.PlayOneShot(unstoppable, 1);
+            unstoppablePlayed = true;
+        }
+        if (hunger < 80 && hungerPlayed == false)
+        {
+            Narrator.PlayOneShot(protein, 1);
+            hungerPlayed = true;
+        }
+        if(muscleCharge == 0 && recoverPlayed == false)
+        {
+            Narrator.PlayOneShot(recover, 1);
+            recoverPlayed = true;
+        }
 
         //don't let stats exceed maximum or minimum
         if (health > maxHealth) health = maxHealth;
@@ -123,6 +156,7 @@ public class PlayerStats : MonoBehaviour
                 atTree = false;
                 tree = null;
                 GetComponent<PlayerController>().DeselectTarget();
+                maxMuscles++;
             }
         }
     }
@@ -132,11 +166,13 @@ public class PlayerStats : MonoBehaviour
 
         if (col.gameObject.tag == "Animal" && col.gameObject.GetComponent<AnimalStats>().str <= muscles)
         {
+            meat += col.gameObject.GetComponent<AnimalStats>().meat;
             Destroy(col.gameObject);
             GetComponent<PlayerController>().selectedTarget = null;
             GetComponent<PlayerController>().gotTarget = false;
             GetComponent<PlayerController>().target = null;
             Debug.Log("won the rastle");
+            maxMuscles += 5;
         }
         if(col.gameObject.tag == "Animal" && col.gameObject.GetComponent<AnimalStats>().str >= muscles)
         {
@@ -145,6 +181,7 @@ public class PlayerStats : MonoBehaviour
             GetComponent<PlayerController>().target = null;
             GetComponent<PlayerController>().gotTarget = false;
             GetComponent<PlayerController>().selectedTarget = GameObject.FindGameObjectWithTag("StartPos").transform;
+            maxMuscles += 5;
         }
         if (col.gameObject.tag == "Tree")
         {

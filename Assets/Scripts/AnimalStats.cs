@@ -5,6 +5,7 @@ using UnityEngine;
 public class AnimalStats : MonoBehaviour
 {
     public int str;
+    public int meat;
     public int animalID = 1;
     public GameObject body;
     public Material squirrel, wolf, bear;
@@ -29,6 +30,7 @@ public class AnimalStats : MonoBehaviour
         {
             case AnimalTypes.squirrel:
                 str = 1;
+                meat = 1;
                 body.GetComponent<Renderer>().material = squirrel;
                 scaleChange = new Vector3(-.5f, -.5f, -.5f);
                 body.transform.localScale += scaleChange;
@@ -37,6 +39,7 @@ public class AnimalStats : MonoBehaviour
                 break;
             case AnimalTypes.wolf:
                 str = 40;
+                meat = 2;
                 body.GetComponent<Renderer>().material = wolf;
                 scaleChange = new Vector3(1f, 1f,1f);
                 body.transform.localScale += scaleChange;
@@ -45,6 +48,7 @@ public class AnimalStats : MonoBehaviour
                 break;
             case AnimalTypes.bear:
                 str = 80;
+                meat = 5;
                 body.GetComponent<Renderer>().material = bear;
                 scaleChange = new Vector3(2f, 2f, 2f);
                 body.transform.localScale += scaleChange;

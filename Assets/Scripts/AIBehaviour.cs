@@ -17,6 +17,7 @@ public class AIBehaviour : MonoBehaviour
     public AudioClip narChase;
     public AudioClip narFlee;
     private AudioSource source;
+    public AudioSource Narrator;
     private int lineCountChase = 0;
     private int lineCountFlee = 0;
 
@@ -53,7 +54,7 @@ public class AIBehaviour : MonoBehaviour
         }
         if(isChasing == true && lineCountChase < 1)
         {
-            source.PlayOneShot(narChase, 1f);
+            Narrator.PlayOneShot(narChase, 1f);
             lineCountChase++;
 
         }
@@ -64,9 +65,9 @@ public class AIBehaviour : MonoBehaviour
             float step = speed * Time.deltaTime; // calculate distance to move
             body.transform.position = Vector3.MoveTowards(transform.position, new Vector3 (player.transform.position.x, 1, player.transform.position.z), -step);
         }
-        if(isChasing == true && lineCountFlee < 1)
+        if(isFleeing == true && lineCountFlee < 1)
         {
-            source.PlayOneShot(narFlee, 1f);
+            Narrator.PlayOneShot(narFlee, 1f);
             lineCountFlee++;
         }
 

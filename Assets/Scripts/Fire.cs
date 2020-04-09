@@ -26,4 +26,12 @@ public class Fire : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Player")
+        {
+            other.GetComponent<PlayerStats>().steak = other.GetComponent<PlayerStats>().meat;
+            other.GetComponent<PlayerStats>().meat = 0;
+        }
+    }
 }

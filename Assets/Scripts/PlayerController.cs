@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     public Transform selectedTarget;
     public GameObject target;
     public bool gotTarget = false; //This is so we can deselect if we didn't click anything
-    private AudioSource source;
+    public AudioSource source;
     public float volLowRange;
     public float volHighRange;
     public bool atTarget = false;
@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     {
         myAgent = GetComponent<NavMeshAgent>();
         selectedTarget = GameObject.FindGameObjectWithTag("StartPos").transform;
-        source = GetComponent<AudioSource>();
+        //source = GetComponent<AudioSource>();
     }
     void Update()
     {
@@ -89,7 +89,7 @@ public class PlayerController : MonoBehaviour
             source.clip = footsteps;
             source.volume = 1f;
             source.Play();
-            if (myAgent.remainingDistance < 3)
+            if (target.tag == "Tree" && myAgent.remainingDistance < 2)
             {
                 myAgent.velocity = new Vector3(0, 0, 0);
             }
