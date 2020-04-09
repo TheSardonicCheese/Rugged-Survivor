@@ -7,13 +7,13 @@ public class PlayerStats : MonoBehaviour
 {
     //create stats
     public int maxHealth = 100;
-    public int health = 100;
+    public float health = 100;
     public int maxHunger = 100;
     public int hunger = 100;
     public int maxThirst = 100;
     public int thirst = 100;
     public int maxMuscles = 100;
-    public int muscles = 1;
+    public float muscles = 1;
     public int muscleChargeMax = 3;
     public int muscleCharge;
     public int wakefulness;
@@ -63,6 +63,8 @@ public class PlayerStats : MonoBehaviour
     bool unstoppablePlayed = false;
     bool hungerPlayed = false;
     bool recoverPlayed = false;
+    public int lineCountChase = 0;
+    public int lineCountFlee = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -164,7 +166,7 @@ public class PlayerStats : MonoBehaviour
     {
         Debug.Log("Fighting animal");
 
-        if (col.gameObject.tag == "Animal" && col.gameObject.GetComponent<AnimalStats>().str <= muscles)
+        if (col.gameObject.tag == "Animal" && col.gameObject.GetComponent<AnimalStats>().str < muscles)
         {
             meat += col.gameObject.GetComponent<AnimalStats>().meat;
             Destroy(col.gameObject);
@@ -177,6 +179,7 @@ public class PlayerStats : MonoBehaviour
         if(col.gameObject.tag == "Animal" && col.gameObject.GetComponent<AnimalStats>().str >= muscles)
         {
             Debug.Log("Lost the rastle");
+            health -= (col.GetComponent<AnimalStats>().str / 2);
             transform.position = GameObject.FindGameObjectWithTag("StartPos").transform.position;
             GetComponent<PlayerController>().target = null;
             GetComponent<PlayerController>().gotTarget = false;

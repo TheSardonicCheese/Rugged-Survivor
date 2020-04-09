@@ -18,8 +18,6 @@ public class AIBehaviour : MonoBehaviour
     public AudioClip narFlee;
     private AudioSource source;
     public AudioSource Narrator;
-    private int lineCountChase = 0;
-    private int lineCountFlee = 0;
 
 
 
@@ -52,10 +50,10 @@ public class AIBehaviour : MonoBehaviour
             body.transform.position = Vector3.MoveTowards(transform.position, player.transform.position, step);
             
         }
-        if(isChasing == true && lineCountChase < 1)
+        if(isChasing == true && GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().lineCountChase < 1)
         {
             Narrator.PlayOneShot(narChase, 1f);
-            lineCountChase++;
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().lineCountChase++;
 
         }
         if (isFleeing == true)
@@ -65,10 +63,10 @@ public class AIBehaviour : MonoBehaviour
             float step = speed * Time.deltaTime; // calculate distance to move
             body.transform.position = Vector3.MoveTowards(transform.position, new Vector3 (player.transform.position.x, 1, player.transform.position.z), -step);
         }
-        if(isFleeing == true && lineCountFlee < 1)
+        if(isFleeing == true && GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().lineCountFlee < 1)
         {
             Narrator.PlayOneShot(narFlee, 1f);
-            lineCountFlee++;
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().lineCountFlee++;
         }
 
 
