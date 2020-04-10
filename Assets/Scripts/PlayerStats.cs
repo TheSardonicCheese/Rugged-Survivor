@@ -47,12 +47,15 @@ public class PlayerStats : MonoBehaviour
     public AudioClip protein;
     public AudioClip recover;
     public AudioClip unstoppable;
+    public AudioClip halfHealth;
+     
        
 
 
     public AudioSource speaker;
     public AudioSource Narrator;
     public AudioSource source;
+    public AudioSource Kraken;
     
 
 
@@ -60,6 +63,7 @@ public class PlayerStats : MonoBehaviour
     //checks
     bool starvationPlayed = false;
     bool lowhealthPlayed = false;
+    bool halfHealthPlayed = false;
     bool dehydrationPlayed = false;
     bool ohWowPlayed = false;
     bool unstoppablePlayed = false;
@@ -88,6 +92,12 @@ public class PlayerStats : MonoBehaviour
                 playSound(lowHealth, 1);
                 lowhealthPlayed = true;
             }
+        if ((health <50) && halfHealthPlayed ==false)
+        {
+            print("playing half health line");
+            playSound(halfHealth, 1);
+            halfHealthPlayed = true;
+        }
         if ((hunger <= 0) && starvationPlayed == false)
             {
                 print("playing starvation line");
